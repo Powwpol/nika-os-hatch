@@ -28,7 +28,21 @@ Where the gain comes from (bench, per field): the base model already finds the c
 Then each tenant is served with its own adapter (`served` in `summary.json`), and a store file copied from one tenant into another is refused (`cross_tenant_file`).
 GPU cost of the hackathon runs (two smoke runs + this run): about 2.2 USD.
 
+![Before / after](demo/evidence/charts/before_after.png)
+![Paired test, item by item](demo/evidence/charts/paired_test.png)
+![Latency](demo/evidence/charts/latency.png)
+
 Evidence (logs, hatch journals, pre-registrations, every trajectory as JSONL, charts): [`demo/evidence/`](demo/evidence/).
+
+## Levels of evolution
+
+![Three levels of evolution](demo/evidence/charts/levels_of_evolution.png)
+
+| Level | What evolves | In this repository | Status |
+|---|---|---|---|
+| 1 · Prompt evolution | the worker instruction, by reflection on trajectories (in the spirit of GEPA, Agrawal et al. 2025, simplified) | `hatch/reflect.py`: the verifier's per-field failure rates pick the tenant memory rule to pin into the prompt; journaled as `reflect_level1` | proposed and recorded, **not yet measured** on the GPU bench |
+| 2 · Fine-tuning | the model weights, one LoRA adapter per tenant | `hatch/train_lora.py`, `hatch/hatch.py` | **measured**: 0.57 → 1.00 and 0.05 → 0.95, negative control rolled back |
+| 3 · Reinforcement learning | the policy, from the verifier's reward on trajectories | today: verifier-corrected SFT (failed trajectories come back with the tenant's correction) | **next**: policy-gradient RL (not implemented) |
 
 ## Architecture
 
@@ -52,6 +66,12 @@ tenant ─┬─ memory/          SQLite file per tenant, local embeddings, ever
 Promote iff Δ accuracy > 0, **and** the exact one-sided sign test on discordant pairs gives p < 0.05, **and** the one-sided 95 % paired-bootstrap lower bound of Δ is > 0. Otherwise roll back. A **negative control** (adapter trained on shuffled answers) runs through the same gate and must be rolled back.
 
 ## Run it
+
+Replay of the real GPU run on a CPU (the recorded Muse Glimmer outputs from `demo/evidence/`, same task ids, reproduces every verdict exactly; this is what the demo video shows):
+
+```bash
+python demo/run_demo.py --backend replay --out runs/replay
+```
 
 CPU, seconds, no model download (fake worker, used by CI):
 
