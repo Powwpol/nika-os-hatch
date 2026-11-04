@@ -32,9 +32,17 @@ class Logger:
     def __init__(self, path: Path):
         self.f = path.open("a")
 
+    COLORS = (("PROMOTE", "32;1"), ("ROLLBACK", "31;1"), ("blocked", "33;1"), ("| GPU", "36"),
+              ("level 1", "35"), ("journal[", "34;1"), ("pre-registered", "33"))
+
     def __call__(self, msg: str):
         line = f"{time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())} {msg}"
-        print(line, flush=True)
+        shown = f"{time.strftime('%H:%M:%S')} {msg}"
+        for key, code in self.COLORS:
+            if key in msg:
+                shown = f"\033[{code}m{shown}\033[0m"
+                break
+        print(shown, flush=True)
         self.f.write(line + "\n")
         self.f.flush()
 
@@ -56,6 +64,51 @@ class FakeTrainer:
 
     def discard(self, name):
         self.worker.adapter_accuracy.pop(name, None)
+
+
+class ReplayWorker:
+    """Replays the raw outputs that Muse Glimmer 30B produced in the recorded GPU run
+    (demo/evidence/tenants_jsonl). Same task ids, same adapters -> same verdicts, on a CPU."""
+
+    def __init__(self, evidence: Path, pace: float = 0.0):
+        self.name = "replay:Muse-Glimmer-30B(GPU run 2026-11-04)"
+        self.out, self.pace = {}, pace
+        for f in (evidence / "tenants_jsonl").glob("*/trajectories__*.jsonl"):
+            for line in f.read_text().splitlines():
+                r = json.loads(line)
+                self.out[(r["task_id"], r["adapter"])] = r["raw_output"]
+
+    def run_batch(self, reqs):
+        time.sleep(self.pace)
+        return [self.out[(r.task_id, r.adapter)] for r in reqs]
+
+
+class ReplayTrainer:
+    """Prints the real, timestamped training lines of the GPU run for this adapter."""
+
+    def __init__(self, evidence: Path, pace: float = 0.0):
+        self.lines = (evidence / "real_run" / "run_log.txt").read_text().splitlines()
+        self.journals = {}
+        for f in (evidence / "real_run" / "tenants").glob("*/hatch_journal.jsonl"):
+            for line in f.read_text().splitlines():
+                r = json.loads(line)
+                if r["event"] == "train_end":
+                    self.journals[r["adapter"]] = r
+        self.pace = pace
+
+    def train(self, examples, name, out_dir, log):
+        out_dir.mkdir(parents=True, exist_ok=True)
+        log(f"  LoRA r=16 on Muse Glimmer 30B, {len(examples)} examples "
+            f"({sum(e['from'] == 'correction' for e in examples)} tenant corrections) -- replaying the GPU log:")
+        for l in self.lines:
+            if f"[{name}] step" in l:
+                log(f"  | GPU {l}")
+                time.sleep(self.pace)
+        j = self.journals.get(name, {})
+        return {k: j[k] for k in ("steps", "loss_first10", "loss_last10", "train_seconds", "trainable_params") if k in j}
+
+    def discard(self, name):
+        pass
 
 
 def load_hf(model_id: str, log):
@@ -87,7 +140,9 @@ def load_hf(model_id: str, log):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--backend", choices=["fake", "hf"], default="fake")
+    ap.add_argument("--backend", choices=["fake", "hf", "replay"], default="fake")
+    ap.add_argument("--evidence", default=str(ROOT / "demo" / "evidence"))
+    ap.add_argument("--pace", type=float, default=0.0, help="seconds of pause per batch / log line (screen recording)")
     ap.add_argument("--model", default="meta-models/Muse-Glimmer-30B")
     ap.add_argument("--out", default=str(ROOT / "runs" / "latest"))
     ap.add_argument("--embedder", default="hashing")
@@ -108,7 +163,7 @@ def main():
     log = Logger(out / "run_log.txt")
     run_uid = os.environ.get("HATCH_RUN_UID") or uuid.uuid4().hex[:6]
     t_start = time.time()
-    log(f"=== nika-os-hatch demo | backend={args.backend} model={args.model if args.backend == 'hf' else 'fake'} "
+    log(f"=== nika-os-hatch demo | backend={args.backend} model={args.model if args.backend != 'fake' else 'fake'} "
         f"run_uid={run_uid} python={platform.python_version()}")
     embedder = get_embedder(args.embedder)
     mem_root = out / "tenants"
@@ -135,6 +190,9 @@ def main():
             iso.setdefault(tid, {})[q] = [{"source": h.source, "tenant": h.tenant_id} for h in hits]
             assert all(h.tenant_id == tid for h in hits)
     log("isolation probe: every hit of every query belongs to the querying tenant")
+    q = "spindle noise work-order code"
+    hits = stores["consulting-firm"].search(q, k=2)
+    log(f"[consulting-firm] searches {q!r} (a machine-shop topic) -> {[h.source + ' @' + h.tenant_id for h in hits]}")
 
     # ------------------------------------------------------------- 2. collect trajectories
     collect = {tid: make_tasks(tid, args.n_traj, seed=1) for tid in TENANTS}
@@ -142,7 +200,11 @@ def main():
              for tid in TENANTS}
     live = {tid: make_tasks(tid, 1, seed=3, prefix="live-") for tid in TENANTS}
 
-    if args.backend == "fake":
+    if args.backend == "replay":
+        worker = ReplayWorker(Path(args.evidence), args.pace)
+        trainer = ReplayTrainer(Path(args.evidence), args.pace / 3)
+        model_id = args.model
+    elif args.backend == "fake":
         oracle = {t.task_id: t.expected for d in (collect, bench, live) for ts in d.values() for t in ts}
         worker = FakeWorker(oracle, accuracy=0.5)
         trainer = FakeTrainer(worker)
@@ -179,6 +241,17 @@ def main():
         tr = orchs[tid].run(collect[tid], [worker], ids, adapter=None, log=log)
         ok = sum(t.verdict for t in tr)
         log(f"[{tid}] collected {len(tr)} trajectories, pass {ok}/{len(tr)} ({time.time() - t0:.0f}s)")
+        ex = tr[0]
+        log(f"[{tid}] trajectory #{ex.id}: ids={ex.ids.project_id}/{ex.ids.job_id}/{ex.ids.task_id}/{ex.ids.run_uid}")
+        log(f"    request : {collect[tid][0].text}")
+        log(f"    tools   : memory.search -> {[h['source'] for h in ex.tool_calls[0]['result']]}")
+        log(f"    answer  : {ex.answer}  verdict={'PASS' if ex.verdict else 'FAIL'}")
+        from hatch.reflect import propose_pins
+        from hatch.registry import HatchJournal
+        rp = propose_pins(tr, stores[tid])
+        HatchJournal(mem_root, tid).write("reflect_level1", **rp)
+        log(f"[{tid}] level 1 (prompt evolution) field fail rates {rp['field_fail_rates']} -> pin "
+            f"{[p['pin'][0]['source'] for p in rp['proposals'] if p['pin']]} [{rp['status']}]")
 
     # ------------------------------------------------------------- 3. hatch
     results = {}
@@ -253,8 +326,15 @@ def main():
     finally:
         (out / "stolen.sqlite").unlink(missing_ok=True)
         shutil.rmtree(mem_root / "intruder", ignore_errors=True)
-    log(f"cross-tenant file reuse: {cross}")
+    log(f"consulting-firm memory file copied under another tenant id -> {cross}")
 
+    for tid in TENANTS:
+        from hatch.registry import HatchJournal
+        for e in HatchJournal(mem_root, tid).read():
+            if e["event"] in ("preregistered", "promote", "rollback"):
+                extra = (f"sha256={e['sha256'][:12]}" if e["event"] == "preregistered" else
+                         f"{e['adapter']} {e['base_acc']:.2f}->{e['cand_acc']:.2f} p={e['p_sign']:.2g}")
+                log(f"journal[{tid}] {e['event']:<13} {extra}")
     summary = {"run_uid": run_uid, "backend": args.backend, "model": model_id, "args": vars(args),
                "duration_s": round(time.time() - t_start, 1), "isolation_probe": iso, "cross_tenant_file": cross,
                "results": results, "served": served}
