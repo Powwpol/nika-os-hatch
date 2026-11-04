@@ -1,0 +1,96 @@
+{
+ "consulting-firm": {
+  "collect \u00b7 base model": {
+   "n": 240,
+   "pass_rate": 0.05416666666666667,
+   "latency_s": 0.9416967322429034,
+   "field_accuracy": {
+    "service": 0.975,
+    "deliverable": 0.07083333333333333,
+    "days": 0.8125
+   }
+  },
+  "bench \u00b7 base model": {
+   "n": 100,
+   "pass_rate": 0.05,
+   "latency_s": 1.0967924904823305,
+   "field_accuracy": {
+    "service": 0.95,
+    "deliverable": 0.05,
+    "days": 0.85
+   }
+  },
+  "bench \u00b7 consulting-firm-v1": {
+   "n": 100,
+   "pass_rate": 0.95,
+   "latency_s": 0.09947481393814073,
+   "field_accuracy": {
+    "service": 1.0,
+    "deliverable": 1.0,
+    "days": 0.95
+   }
+  },
+  "serve \u00b7 consulting-firm-v1": {
+   "n": 1,
+   "pass_rate": 1.0,
+   "latency_s": 1.400585651397705,
+   "field_accuracy": {
+    "service": 1.0,
+    "deliverable": 1.0,
+    "days": 1.0
+   }
+  }
+ },
+ "machine-shop": {
+  "collect \u00b7 base model": {
+   "n": 240,
+   "pass_rate": 0.5833333333333334,
+   "latency_s": 1.0311826348304747,
+   "field_accuracy": {
+    "code": 0.675,
+    "priority": 0.9166666666666666,
+    "asset": 0.8708333333333333
+   }
+  },
+  "bench \u00b7 base model": {
+   "n": 100,
+   "pass_rate": 0.57,
+   "latency_s": 1.17090700864792,
+   "field_accuracy": {
+    "code": 0.65,
+    "priority": 0.88,
+    "asset": 0.84
+   }
+  },
+  "bench \u00b7 machine-shop-control": {
+   "n": 100,
+   "pass_rate": 0.02,
+   "latency_s": 0.12401305198669434,
+   "field_accuracy": {
+    "code": 0.11,
+    "priority": 0.39,
+    "asset": 0.13
+   }
+  },
+  "bench \u00b7 machine-shop-v1": {
+   "n": 100,
+   "pass_rate": 1.0,
+   "latency_s": 0.1243901729583741,
+   "field_accuracy": {
+    "code": 1.0,
+    "priority": 1.0,
+    "asset": 1.0
+   }
+  },
+  "serve \u00b7 machine-shop-v1": {
+   "n": 1,
+   "pass_rate": 1.0,
+   "latency_s": 1.536905288696289,
+   "field_accuracy": {
+    "code": 1.0,
+    "priority": 1.0,
+    "asset": 1.0
+   }
+  }
+ }
+}

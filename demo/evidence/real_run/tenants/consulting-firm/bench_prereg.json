@@ -1,0 +1,919 @@
+{
+ "protocol": {
+  "tenant_id": "consulting-firm",
+  "registered_at": "2026-11-04T10:16:02Z",
+  "model_id": "meta-models/Muse-Glimmer-30B",
+  "metric": "per-item exact match of every expected field (binary)",
+  "test": "exact one-sided sign test on discordant pairs + paired bootstrap of mean difference",
+  "alpha": 0.05,
+  "n_boot": 10000,
+  "seed": 20261104,
+  "decision_rule": "promote iff (delta > 0) and (sign-test one-sided p < alpha) and (bootstrap one-sided lower bound of delta at level 1-alpha > 0); otherwise roll back",
+  "items": [
+   {
+    "task_id": "bench-cf-0000",
+    "text_sha256": "2a77163eb9ce78755afaa4127c72d2c45181c20fcf6e60c610c42ee86b4b652f",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 1
+    }
+   },
+   {
+    "task_id": "bench-cf-0002",
+    "text_sha256": "0111ba40f56169689bace3c8616ce54bc082c55ecdbbb03ade49f7d5cf0127dd",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 1
+    }
+   },
+   {
+    "task_id": "bench-cf-0006",
+    "text_sha256": "cc0e868be90eae2a799e4f81d436fe5d7476ce21ef5b54ccd755248ae266b332",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0008",
+    "text_sha256": "c43695f74c3aeb4a8d55b4f50d4d4fa8ab912fcce0a5bb53736177f1b4bc894e",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0010",
+    "text_sha256": "50a0662ba5e972b523c435c3af5a3129de2290437086a1ec122d225e0ee2fc44",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 8
+    }
+   },
+   {
+    "task_id": "bench-cf-0011",
+    "text_sha256": "ed463af0eed2b2bf5b1fc08793491e4a8b6b9d66bd6fda10e89872667955a655",
+    "expected": {
+     "service": "PROTO",
+     "deliverable": "prototype",
+     "days": 8
+    }
+   },
+   {
+    "task_id": "bench-cf-0012",
+    "text_sha256": "248da66d2f9eb7ee4dac2e0dadf25ea268b59de8d19c1c7b38d1ab21dabdbb32",
+    "expected": {
+     "service": "PROTO",
+     "deliverable": "prototype",
+     "days": 5
+    }
+   },
+   {
+    "task_id": "bench-cf-0014",
+    "text_sha256": "20a8301e1d0d6c26a3ff14fe10d6b4a9cd402fa63b306b3c8646ff5830c6b07e",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0017",
+    "text_sha256": "16c8f48d8a6a4c4a1438495481ac7256ace720fda36da20d493554e1fa2b50c7",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0018",
+    "text_sha256": "46fd99fe6a83b9f933ef5697e7d4debf789e98bc472c22543fc10943d058ca49",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0020",
+    "text_sha256": "aa961b18a7d3dac79ce47fdd77bfad518a407de8366fcf58557866963e0ee8ba",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0023",
+    "text_sha256": "91b9d7b8f747223a2a63117544e838b9bd8647a6513764e84b95ad1d9369c5db",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0027",
+    "text_sha256": "b826396c5e54c94fd0b359cd8b59ba49c1516482f0472a2c695ca13c16a16038",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 6
+    }
+   },
+   {
+    "task_id": "bench-cf-0029",
+    "text_sha256": "410e3954268a2aaee130be7d70afa09a8686c7ba2bcd42f0bfc3bdad990573fd",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0032",
+    "text_sha256": "1b8b23299d2983384c0e9e2332aa21ec8e0b195b6f3c936ea1029f8a9e7193df",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0034",
+    "text_sha256": "b989b959ff33a6b4e0352e8def9b1b54d57bbbd1edc448d3e29d1053279ce873",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0035",
+    "text_sha256": "8223448a23843c6489fe79163856efd13cd4f454fe3e14ed903b5258bcc7edc8",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0037",
+    "text_sha256": "57240c06bff4cc09ccc6fa8b7414c51bf53ccd8376f72fda92e8cc47ff05d9bd",
+    "expected": {
+     "service": "PROTO",
+     "deliverable": "prototype",
+     "days": 5
+    }
+   },
+   {
+    "task_id": "bench-cf-0043",
+    "text_sha256": "404c336a4cbd35deac837913052f3792a5ab2383409d7360db9d65447ddfff02",
+    "expected": {
+     "service": "PROTO",
+     "deliverable": "prototype",
+     "days": 8
+    }
+   },
+   {
+    "task_id": "bench-cf-0044",
+    "text_sha256": "a6d121222dd4cf23463f1a6fdd532d68a8d8bb1ed5d634671891bb0c036d5edc",
+    "expected": {
+     "service": "BID",
+     "deliverable": "proposal",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0046",
+    "text_sha256": "1e3c3d2da3140e2cca178464d99bb6f9f0336a8612f1f66bff4d6cf0f5d9b964",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0047",
+    "text_sha256": "39a4917a1db9aa2e5a9a0b36039cb1b34cb68c88cae889d2bb37a70d8c12a1ca",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0048",
+    "text_sha256": "1682dd293cabcd72c1e2e3d2bf75a4ed374382be789030d085259157c3ef8ab6",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0052",
+    "text_sha256": "7b9d02adc1470fde6269176e27e4c6d6368feb0972713721901c47ad4a84cd32",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0054",
+    "text_sha256": "b3356f22f507fb0be304915420f8273d0bde2cc0016d8918ca91e51e45b4694f",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0057",
+    "text_sha256": "596944b9163e64c37eb68543a38f43bf6de43dff4d158c5518b81a7f09533dfc",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0060",
+    "text_sha256": "e5650dd799b96d6a9452f2ec227e755c437c0dc74662d44a7eb1d4e7e1ca3335",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0061",
+    "text_sha256": "76152b09503f8f450600dfd5251c5c47344dcd16a6a1665c859af9fac3ef52c6",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0062",
+    "text_sha256": "929b1ff18b1e075f144db1ce722e5ae60834cd1a26e7705cc17e6e50d0a616f0",
+    "expected": {
+     "service": "PROTO",
+     "deliverable": "prototype",
+     "days": 5
+    }
+   },
+   {
+    "task_id": "bench-cf-0065",
+    "text_sha256": "f65399e500838888d49a3cda277f75e0f346233f276e6de35e3a8196a9cd896f",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 1
+    }
+   },
+   {
+    "task_id": "bench-cf-0068",
+    "text_sha256": "1bd97ee77ce8604503f722db41a6a371b5520f689f5d9c23548aae11f7e2043f",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0072",
+    "text_sha256": "1a0765582d1f20dc0f57a8a0fc575121ffcfcedc5c900e19d76aac9c27baa71a",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 1
+    }
+   },
+   {
+    "task_id": "bench-cf-0073",
+    "text_sha256": "85f0965c3961a7f98176c9960c90f753504b2a7505a087e4de7e0a3ce9ff36f0",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0074",
+    "text_sha256": "9bd8fb2b1d999b49ce625575748553aee22af6934806efa10f72afd6022d60fc",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0077",
+    "text_sha256": "682cd37901dba4d7fa85497367676d08788af2c2ad1d92b2b73d1b0161179121",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0082",
+    "text_sha256": "566e691e6777eeeb7d69fddbfef8cd888f8eb3b3d8cae10e09e7af1db9395c53",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0084",
+    "text_sha256": "f581506c485d7ef278bb57cef517ea1f54b513885d3d4b97a8144d82ff53826f",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0090",
+    "text_sha256": "e995e3e16dc8e47fcce0130ace63d67f7417800691bd555f8fee8e3bdc455776",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0092",
+    "text_sha256": "c7cc470fb4083820e4e0464bce22fd3e2a655edf929f897259e8f7f84aa89fe0",
+    "expected": {
+     "service": "PROTO",
+     "deliverable": "prototype",
+     "days": 8
+    }
+   },
+   {
+    "task_id": "bench-cf-0096",
+    "text_sha256": "f961d63877edf9d298e97f567de4a72728080702cb1bd3b57bef73daed0f8647",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0100",
+    "text_sha256": "e3471abcb71d1a4100f605729ea9a5ea62f0cfc36ffb6409df81fcf65588d109",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0101",
+    "text_sha256": "aeacd8e68e276112c164633ed910fef3b1f58ff0e6cdd93183a2a3ade279f9b6",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0102",
+    "text_sha256": "b7d3875192f5f68a665438c3daeecebc3d507c7b54aa4659d5c63c7533caf1bb",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0104",
+    "text_sha256": "bfd5cf41117af1ba4bcb8072a51e9bfc72ed5d90a8d54c14c0c3a232bdee3819",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0112",
+    "text_sha256": "b7d5b2c51d757ec9b9554d46a1c1af76b9e6e47e9d33b7d390ee804b360901d4",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0117",
+    "text_sha256": "8eafa6b672e9ab53126582951824c4aef28eeab631e3cfdce9b9a9145eeb566c",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0119",
+    "text_sha256": "4d261ed55fe75079cf3d06c2d22e687fc83e03a3d69dd624d77ad88f3e6af42e",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0120",
+    "text_sha256": "58620bd24fe9bf5828725bc30ebf92c1f940d24c77b4332ccb68f07b0fdf5c9e",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0128",
+    "text_sha256": "1e4655ab7c3936bfc9096bd70a408cfec55ba86c0478949176b5c24d528dd0e8",
+    "expected": {
+     "service": "BID",
+     "deliverable": "proposal",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0132",
+    "text_sha256": "b8974b8501cb28d5a4f961304c0b35fe172398ab7077d62b20bfd855aab6b398",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0133",
+    "text_sha256": "2a78c1eda4424d8f71f5b06557ed0d8d08d784a0b449c97aa19b381cfa576d89",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 6
+    }
+   },
+   {
+    "task_id": "bench-cf-0137",
+    "text_sha256": "421b09f37d0af6efcc53223df509f451fefdfa710a28eb3e0cc14a847c878f10",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 6
+    }
+   },
+   {
+    "task_id": "bench-cf-0138",
+    "text_sha256": "872ac3d4072248b9358946b62aed7ba444c8ed9090bd36573e13a68426b0a5ad",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0145",
+    "text_sha256": "0e655800dfa5c7207c295a7e11064e97991d26dca4b8d5950279916fe4968bbf",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0146",
+    "text_sha256": "40457b05a033c31f31e18b544e8a63641bea8abfbde2fe6a7e2ca290dc714aa7",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0164",
+    "text_sha256": "de33e39b87f5ee8600176b424330d980faf7c9f3c554bbd69986f718ffaacd80",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 1
+    }
+   },
+   {
+    "task_id": "bench-cf-0179",
+    "text_sha256": "6e3c674b5e8f24087f9e8e61e48bf7f4c02e7d36dfef32d036009c639b603aeb",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0181",
+    "text_sha256": "b0c8c07feee5627dda84fca0c06d5a697e80d4614ce2c3447a38eecf5dd81e3a",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0188",
+    "text_sha256": "8cdb6f2581f9aa2da55140b7973147d82d60575c9145d2bb6c5342fff2a674e5",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0190",
+    "text_sha256": "b84072381553fb37b6cf1ab8203e2446968fcb61a33d4bf76f2936106fd47d59",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0193",
+    "text_sha256": "7c103d340d3756ded9eb448a5ed00ffe05ce08fb192795c5a163a389ec7eb6bc",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0197",
+    "text_sha256": "c1c6de69dcefc83e4dc5bfd7e528170eef4933c05bda11732a3ebcc941ea5c59",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0198",
+    "text_sha256": "27d21b0c7fa8640b169eb195f224855226fbb3cda19f3e6e47ef0b729a310d84",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0201",
+    "text_sha256": "7ace26595de6327896bc9dc4199c4667773f3cb12a5f9d3a99883ebb1d0edde5",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0204",
+    "text_sha256": "a5af85d4fdb16177819c0a128a5fa05194ba3f1e40d4f4f8f77eefab3942df18",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0212",
+    "text_sha256": "959e89dd8d55ecb92fe47349c64cf33de9602354a712ba44640046dcf2281f7c",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0215",
+    "text_sha256": "83cf46eaeb352dc36ee4d0025385e160c6b949b4d0c66a9bb1050777110a317e",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0217",
+    "text_sha256": "07d7e3fc31981ffc774b7adc45445af2770150eda1e5d59fdc1f8ed9fc27936a",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 1
+    }
+   },
+   {
+    "task_id": "bench-cf-0227",
+    "text_sha256": "cc88794775695df080c0371b5a93d0a3824ba32d1c65ce8efbc8b0a425b35eac",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 6
+    }
+   },
+   {
+    "task_id": "bench-cf-0232",
+    "text_sha256": "f6362769779b8fdf65e326e60baef5d905e4ff77385e23008b200c523450978a",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0233",
+    "text_sha256": "74a0c55d229e4586cd077f4846d50d137eeb94e39ec597820a6902c32b3e7ddf",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0235",
+    "text_sha256": "bc34c3edc2a1aac1acfd5b2e3660ecfba17a1dab6fc02bf104a67ee30e78d6dc",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0237",
+    "text_sha256": "ee807f6d1ba5e8121f73ca948cb20664fe8c749474390e7080b7a5685d0406b7",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0239",
+    "text_sha256": "df5c232d2253c6314466125d3554e948835227161cf2776e97fddaf9856fe25e",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0248",
+    "text_sha256": "480c9796ee030a145851d377e74ffa8e775a731eb79d4378b6ba15d68b1fd9e1",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0254",
+    "text_sha256": "b206b3a6b1f6575a637c1df309f730240645f1aaa34e162604c7847cdf5bae50",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0265",
+    "text_sha256": "be548c87778fc43d4e127a0bf2e9add23c9645a620f54ead5dc2b20473af26a8",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 1
+    }
+   },
+   {
+    "task_id": "bench-cf-0266",
+    "text_sha256": "ec0d860ff1d3124f7545340ee67043e67e08021dfcd5cdb35a1da88ad49cae7e",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0271",
+    "text_sha256": "7428689e8fb34e1d1116a0ca84e86edf8b0c7971705f25ecf923fb38d76cfa9d",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0276",
+    "text_sha256": "ae07f5c2de37eeebe0741d475ffe0ef7c419855194c90f389450525f19abcd2e",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0280",
+    "text_sha256": "17159a9673a0ff4f358dc618247abd242492c8753d3763c14752c673c0d6d0b3",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0282",
+    "text_sha256": "d627c856f771a69610294c7156893398923526098a8ebe3262c978cccf4d4027",
+    "expected": {
+     "service": "PROTO",
+     "deliverable": "prototype",
+     "days": 8
+    }
+   },
+   {
+    "task_id": "bench-cf-0285",
+    "text_sha256": "0ba6d6cc7249fa714cc1af6a25805b02cf3d43a378144c3b6e48f4211593c9b3",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0286",
+    "text_sha256": "f94c6021c9e51facd6f380774e62b66b4cc86f7a836cacb91bbba3b146cb3888",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0287",
+    "text_sha256": "89cf8f0bb1a049f8c23b7502d9bb3d55661ab43d67961ec0cf55f8c8b44f9e19",
+    "expected": {
+     "service": "PROTO",
+     "deliverable": "prototype",
+     "days": 5
+    }
+   },
+   {
+    "task_id": "bench-cf-0292",
+    "text_sha256": "403d22b3af5d837c18351466bf1adafe7ca33a207215beae9937c8ab8c807177",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0295",
+    "text_sha256": "b7e0d9bd5a62b56743af1316fdb3e8cadb5079d18a2b98a360b6100099d9ea7a",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0300",
+    "text_sha256": "486062518e40b7fd65e6483d396def9741076c80eb96c4ae08aca17b70386988",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0301",
+    "text_sha256": "102cd87ebbed10822446cce7c31040888f8f222f5e77c71b2f62497468190d82",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0306",
+    "text_sha256": "4882373123ff6eab156e1b4f1911fc45ea7cb3509b8547a4bab0fc7ebd4ceeda",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0311",
+    "text_sha256": "b52a6568427de3e07b6f9c611216d4e36bd219a5d325d03c367fca63afbe5983",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 1
+    }
+   },
+   {
+    "task_id": "bench-cf-0312",
+    "text_sha256": "e17ee8ff020a3ca50998ccff442ce9185a0436dd131427eceba57ed82192f6ae",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 1
+    }
+   },
+   {
+    "task_id": "bench-cf-0320",
+    "text_sha256": "c062096e0df173d863224c8779092cb027eda557463c02f44ba6addf7e47433b",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 2
+    }
+   },
+   {
+    "task_id": "bench-cf-0321",
+    "text_sha256": "eec14249c5c2197504101034d94d6e5c1923bed079fabddd25336012ab603385",
+    "expected": {
+     "service": "PROTO",
+     "deliverable": "prototype",
+     "days": 8
+    }
+   },
+   {
+    "task_id": "bench-cf-0324",
+    "text_sha256": "ebff135e0513803a031ea4ed1683ddb5f87ef370c8463ee1879aa182c880b658",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0326",
+    "text_sha256": "9a2974a9f8057785758bf896afadc522cf0021a10d539199569ae87dafb00e41",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 3
+    }
+   },
+   {
+    "task_id": "bench-cf-0332",
+    "text_sha256": "20713a3e42acb8b90bad9cb7eb690ca71792fedcdd9367f6b84a7dc200e84c3a",
+    "expected": {
+     "service": "LEAN",
+     "deliverable": "map",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0333",
+    "text_sha256": "3a1f9ae505c2729365a367c906b9c43fa2f74fea26c7f9de372c031e4ede8978",
+    "expected": {
+     "service": "DIAG",
+     "deliverable": "report",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0334",
+    "text_sha256": "a4c6bf38e2c1f1b0ac2357008d18c862acfc24e309f6373537ea2b1454269219",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 4
+    }
+   },
+   {
+    "task_id": "bench-cf-0338",
+    "text_sha256": "b619f11922c3ce42a2abbff63abd9c6a01742772c64da96217b8f43cc288a480",
+    "expected": {
+     "service": "TRAIN",
+     "deliverable": "workshop",
+     "days": 2
+    }
+   }
+  ],
+  "train_trajectories": 240,
+  "lora_steps": 200,
+  "items_sha256": "9b51381375287d45f7e67e7b61ea2309b712b69f67149e395c0570eab439c427"
+ },
+ "sha256": "4e4d8fea9dab8e661082ac783650e28ae94ec77c636cf403106810489892aa9d"
+}

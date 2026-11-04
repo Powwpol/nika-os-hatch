@@ -1,0 +1,52 @@
+{
+ "tenant_id": "machine-shop",
+ "active": "machine-shop-v1",
+ "history": [
+  {
+   "ts": 1793787178.2336433,
+   "event": "rollback",
+   "adapter": "machine-shop-control",
+   "kept": null,
+   "verdict": {
+    "n": 100,
+    "base_acc": 0.57,
+    "cand_acc": 0.02,
+    "delta": -0.55,
+    "wins": 1,
+    "losses": 56,
+    "ties": 43,
+    "p_sign": 1.0,
+    "boot_lower": -0.63,
+    "boot_ci": [
+     -0.65,
+     -0.45
+    ],
+    "promote": false,
+    "prereg_sha256": "4d7ce30ecd561db33a736c4b7c54eb8f595418ac60ab454536084adc6f4a699f"
+   }
+  },
+  {
+   "ts": 1793787362.2562013,
+   "event": "promote",
+   "adapter": "machine-shop-v1",
+   "previous": null,
+   "verdict": {
+    "n": 100,
+    "base_acc": 0.57,
+    "cand_acc": 1.0,
+    "delta": 0.43,
+    "wins": 43,
+    "losses": 0,
+    "ties": 57,
+    "p_sign": 1.1368683772161603e-13,
+    "boot_lower": 0.35,
+    "boot_ci": [
+     0.33,
+     0.53
+    ],
+    "promote": true,
+    "prereg_sha256": "4d7ce30ecd561db33a736c4b7c54eb8f595418ac60ab454536084adc6f4a699f"
+   }
+  }
+ ]
+}

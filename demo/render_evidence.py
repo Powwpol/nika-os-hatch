@@ -218,6 +218,27 @@ def stats_table(stats, out):
     plt.close(f)
 
 
+def export_jsonl(run, outdir):
+    """Readable copies of each tenant's memory and trajectories (embeddings left out)."""
+    for tdir in sorted((Path(run) / "tenants").iterdir()):
+        dst = outdir / "tenants_jsonl" / tdir.name
+        dst.mkdir(parents=True, exist_ok=True)
+        for name, q in (("memory", "SELECT id,tenant_id,text,source,kind,project_id,job_id,task_id,run_uid,created_at,meta FROM memory"),
+                        ("trajectories", "SELECT * FROM trajectory")):
+            db_path = tdir / ("memory.sqlite" if name == "memory" else "trajectories.sqlite")
+            if not db_path.exists():
+                continue
+            cur = sqlite3.connect(db_path).execute(q)
+            cols = [c[0] for c in cur.description]
+            files = {}
+            for row in cur:
+                rec = dict(zip(cols, row))
+                key = name if name == "memory" else f"trajectories__{rec['job_id']}__{rec['adapter'] or 'base'}"
+                files.setdefault(key, []).append(json.dumps(rec, ensure_ascii=False))
+            for key, lines in files.items():
+                (dst / f"{key}.jsonl").write_text("\n".join(lines) + "\n")
+
+
 def main(run, outdir):
     run, outdir = Path(run), Path(outdir)
     outdir.mkdir(parents=True, exist_ok=True)
@@ -227,6 +248,7 @@ def main(run, outdir):
     trajectory_card(run, "machine-shop", outdir / "02_trajectory_machine_shop.png")
     loss_chart(log, outdir / "03_lora_loss.png", summary)
     bench_chart(summary, outdir / "04_bench_verdicts.png")
+    export_jsonl(run, outdir)
     st = run_stats(run)
     (outdir / "trajectory_stats.json").write_text(json.dumps(st, indent=1))
     stats_table(st, outdir / "06_field_accuracy_latency.png")

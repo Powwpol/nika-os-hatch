@@ -4,3 +4,4 @@ runs/
 *.safetensors
 .venv/
 .pytest_cache/
+*.sqlite

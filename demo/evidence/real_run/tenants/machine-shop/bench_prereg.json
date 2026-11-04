@@ -1,0 +1,919 @@
+{
+ "protocol": {
+  "tenant_id": "machine-shop",
+  "registered_at": "2026-11-04T10:07:56Z",
+  "model_id": "meta-models/Muse-Glimmer-30B",
+  "metric": "per-item exact match of every expected field (binary)",
+  "test": "exact one-sided sign test on discordant pairs + paired bootstrap of mean difference",
+  "alpha": 0.05,
+  "n_boot": 10000,
+  "seed": 20261104,
+  "decision_rule": "promote iff (delta > 0) and (sign-test one-sided p < alpha) and (bootstrap one-sided lower bound of delta at level 1-alpha > 0); otherwise roll back",
+  "items": [
+   {
+    "task_id": "bench-ms-0000",
+    "text_sha256": "9dffb5120e9232df0c6cd0ce0c84654eba498f6b833ab62ca70f6059f7098f33",
+    "expected": {
+     "code": "HYD-3",
+     "priority": "P2",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0001",
+    "text_sha256": "52c8dbedb31f6639e1705b76abac8f6695c44f6dd8a0e8c6597f0bbba9b20c70",
+    "expected": {
+     "code": "HYD-2",
+     "priority": "P3",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0002",
+    "text_sha256": "e6ea8e0abf981adf2880f24ccc1153ad19c9a9c9ae5ddf63226a8378a7f90b7c",
+    "expected": {
+     "code": "CLT-3",
+     "priority": "P3",
+     "asset": "CNC-04"
+    }
+   },
+   {
+    "task_id": "bench-ms-0003",
+    "text_sha256": "ad1df79f300339c820dd640b1a793d8c1d0a719f0c003e61a2cdeedee16df61b",
+    "expected": {
+     "code": "CLT-1",
+     "priority": "P1",
+     "asset": "CNC-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0004",
+    "text_sha256": "2a3985ce4797c38310e932921d80c3392c7cf726c0249aa50bff343c64a7f750",
+    "expected": {
+     "code": "TOL-3",
+     "priority": "P2",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0005",
+    "text_sha256": "2b520e46600c6e6f23a9facde6a25dcda85b29b4412dba07f725022b11b98c93",
+    "expected": {
+     "code": "SPN-2",
+     "priority": "P1",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0006",
+    "text_sha256": "5b6aa67372deffddffdcc70d1e71e396ee02e88d85c0c62508e74a553ac80580",
+    "expected": {
+     "code": "SAF-3",
+     "priority": "P1",
+     "asset": "CNC-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0007",
+    "text_sha256": "b2df74d84c4a3a6c50ae1b75aa4c411711b51f871bb4529b3164170a4574d913",
+    "expected": {
+     "code": "SPN-3",
+     "priority": "P1",
+     "asset": "CNC-06"
+    }
+   },
+   {
+    "task_id": "bench-ms-0008",
+    "text_sha256": "7bfbcca2aefe674b171e1c5c0124a019cd4a6d84bf8ad8111565a5c3b87987f4",
+    "expected": {
+     "code": "SAF-2",
+     "priority": "P1",
+     "asset": "CNC-04"
+    }
+   },
+   {
+    "task_id": "bench-ms-0009",
+    "text_sha256": "11fa16684986c01a6d9efdd82215ac2af9e2688a5766441cd1ea4a7f55d47d82",
+    "expected": {
+     "code": "SAF-2",
+     "priority": "P1",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0010",
+    "text_sha256": "dfa5d8474cdcce9b1eaaa410c1e13bb1385ddccf4a33a7d2c6ffeda0e730c267",
+    "expected": {
+     "code": "TOL-3",
+     "priority": "P2",
+     "asset": "CNC-04"
+    }
+   },
+   {
+    "task_id": "bench-ms-0011",
+    "text_sha256": "6e94ce408adaf2de41f0e9dfd935d319a4d5ed2be1534b2b4917a4f601d4565b",
+    "expected": {
+     "code": "ELE-2",
+     "priority": "P1",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0012",
+    "text_sha256": "303c68f0c761973216a8a288dfab86ded267095822232f1e008b5f12c1e601e7",
+    "expected": {
+     "code": "ELE-3",
+     "priority": "P3",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0013",
+    "text_sha256": "b15e8f01d3559aeb643e53b21bbea1465464f2374ea9d92dc4d0a9aa08fb8992",
+    "expected": {
+     "code": "SPN-2",
+     "priority": "P2",
+     "asset": "CNC-05"
+    }
+   },
+   {
+    "task_id": "bench-ms-0014",
+    "text_sha256": "19c9a6ff0b64af22abcefdee44f6a5350bf8e6784bf4ce8da4d67465f10fd7f3",
+    "expected": {
+     "code": "SPN-3",
+     "priority": "P1",
+     "asset": "CNC-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0015",
+    "text_sha256": "8de70d6bd8427ae084f1807ed514948db062f5b02db2c7e113850767e103eedc",
+    "expected": {
+     "code": "HYD-3",
+     "priority": "P2",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0016",
+    "text_sha256": "cd7ebd2a1bc4edf759e4c7787a981bcced7f960fbdd16c37c6d59e38a54dd849",
+    "expected": {
+     "code": "ELE-1",
+     "priority": "P2",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0017",
+    "text_sha256": "66830bd159f98c3fbaef80e04737c0a25466b492512e12853f580bf70bd777d4",
+    "expected": {
+     "code": "TOL-2",
+     "priority": "P2",
+     "asset": "CNC-05"
+    }
+   },
+   {
+    "task_id": "bench-ms-0018",
+    "text_sha256": "d4a81f649db9c0a8e0b3c316fda62e2d135bd9745d3c2701eaeb1204e15174ed",
+    "expected": {
+     "code": "CLT-1",
+     "priority": "P3",
+     "asset": "CNC-04"
+    }
+   },
+   {
+    "task_id": "bench-ms-0019",
+    "text_sha256": "89529e08fa71dc94fb599f22439abdb6b4a523bb44861563b219a5c47122566d",
+    "expected": {
+     "code": "HYD-1",
+     "priority": "P3",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0020",
+    "text_sha256": "6aafb64d4f3dd06b52eb44e7b8f4f0f0b38c966dae2f06809d6f8a67cf9c6d43",
+    "expected": {
+     "code": "ELE-2",
+     "priority": "P1",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0021",
+    "text_sha256": "bb8a168deca19fa1d8905e61a5c9dccbab724c8f27ab3dfb29e1623c470cdda2",
+    "expected": {
+     "code": "ELE-2",
+     "priority": "P2",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0022",
+    "text_sha256": "ad7c252c229bf75c24ecc2d1354ffd0666cec3265729afe99c5b2560968e0930",
+    "expected": {
+     "code": "TOL-1",
+     "priority": "P1",
+     "asset": "CNC-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0023",
+    "text_sha256": "e1f675534fd6ba20ea0babe1e8df81ce58318faa73dcd5241d9d4b2d9380a438",
+    "expected": {
+     "code": "SPN-1",
+     "priority": "P2",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0024",
+    "text_sha256": "d5add9f1462d023b28830435d22e423931ab51637af93fe21c8e1cce5a307383",
+    "expected": {
+     "code": "SAF-1",
+     "priority": "P1",
+     "asset": "CNC-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0025",
+    "text_sha256": "5d34cfa6cd9e30202b814708769610c7755ad385b4c1d1a125abe4a8951c6e3f",
+    "expected": {
+     "code": "ELE-3",
+     "priority": "P2",
+     "asset": "CNC-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0026",
+    "text_sha256": "d720f685155fbe77a0988cc8985f0d1bd2168b98085937f35a3fb6df57487ef0",
+    "expected": {
+     "code": "HYD-2",
+     "priority": "P1",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0027",
+    "text_sha256": "bf5c47356d921302f362e53b73863bd419f24adcb629866eeb0d1dbfe4d2f54a",
+    "expected": {
+     "code": "SPN-3",
+     "priority": "P3",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0028",
+    "text_sha256": "e66a450aae80a91093e82b29a9fc83b9a8b3a6354329d1609b44c02130b7306d",
+    "expected": {
+     "code": "CLT-3",
+     "priority": "P2",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0029",
+    "text_sha256": "0e2a4bd3f5a734b526c1a102fdbe9b47baeba216e385ad7a91ede81aaa637a2f",
+    "expected": {
+     "code": "TOL-1",
+     "priority": "P1",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0030",
+    "text_sha256": "c049729820b2d6cb6a14836d84a5a0ca3ffa9ff07a9b9386ee993b095efa6fb9",
+    "expected": {
+     "code": "TOL-2",
+     "priority": "P2",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0031",
+    "text_sha256": "1647f671d9e97a0e06832de3cab9d3027af808951e5743289f6a68fa4377e90b",
+    "expected": {
+     "code": "HYD-3",
+     "priority": "P2",
+     "asset": "CNC-04"
+    }
+   },
+   {
+    "task_id": "bench-ms-0032",
+    "text_sha256": "e7400f7bbff1b7770e38a4dda908d5fcdca0ff251aa0a8b20780bf790100cea5",
+    "expected": {
+     "code": "TOL-1",
+     "priority": "P2",
+     "asset": "LTH-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0033",
+    "text_sha256": "cf5ce9dfe9547632c998cb2446ebeae5bf2a15ae0ef1e6bc7a778a6dc3fb052e",
+    "expected": {
+     "code": "SAF-3",
+     "priority": "P1",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0034",
+    "text_sha256": "984660e0dc496c3dba9159b66fccf61674e17dbcb505478a73515c5fdf3cdcc5",
+    "expected": {
+     "code": "ELE-3",
+     "priority": "P2",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0035",
+    "text_sha256": "b20b6fb788073c1c34c08513c4a58a0f7d20866fbcfe56fe5330a64e4d5285fc",
+    "expected": {
+     "code": "CLT-1",
+     "priority": "P3",
+     "asset": "CNC-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0036",
+    "text_sha256": "1da2b6176ca62d1ef8de0d07f56b21ec971a1e7c048375c064e6557e071e54bc",
+    "expected": {
+     "code": "CLT-3",
+     "priority": "P3",
+     "asset": "CNC-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0037",
+    "text_sha256": "61e2b5177db8c42f82d5b2ddf568c190e62e0fcae6029f66df8f7f751f6285da",
+    "expected": {
+     "code": "ELE-2",
+     "priority": "P2",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0038",
+    "text_sha256": "8071a8f39c7c3d51b07caba70d6ef886f8b2b7f60fa69c0d70fa5d99828468fc",
+    "expected": {
+     "code": "SPN-1",
+     "priority": "P2",
+     "asset": "CNC-06"
+    }
+   },
+   {
+    "task_id": "bench-ms-0039",
+    "text_sha256": "077c9bf36b20da0adbfc2b789811dd8e1a731cae6b0bc3a8f9ee25d518a70dfc",
+    "expected": {
+     "code": "SPN-3",
+     "priority": "P1",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0040",
+    "text_sha256": "fa81b22323aa01fd92a116029a84b2b944baec76203040fa0beb8e5fe34d3799",
+    "expected": {
+     "code": "SAF-2",
+     "priority": "P1",
+     "asset": "LTH-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0041",
+    "text_sha256": "6d0969f43db2b0a18a0d91e518cf69fb99651d888fd704ff78edadd3fb0594c3",
+    "expected": {
+     "code": "SPN-3",
+     "priority": "P2",
+     "asset": "CNC-05"
+    }
+   },
+   {
+    "task_id": "bench-ms-0042",
+    "text_sha256": "091619dc851c58be8a2bf33066d9e6d4a3583e01cafd662f335a65ccf4e60846",
+    "expected": {
+     "code": "SAF-3",
+     "priority": "P1",
+     "asset": "CNC-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0043",
+    "text_sha256": "f5e5874fba4d221346b4328893a78474555ec483da342308520296d67db2fbd6",
+    "expected": {
+     "code": "ELE-1",
+     "priority": "P3",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0044",
+    "text_sha256": "dcfe149e266486e78eb9b1fd4b9eae2bcd97f11ab13a3ab94a0e360751f2a2b1",
+    "expected": {
+     "code": "TOL-3",
+     "priority": "P2",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0045",
+    "text_sha256": "e654cc37fc2a1e3940c476cac4f38d55fbcddfbaacbf607dcdbedaf63a5f20f7",
+    "expected": {
+     "code": "CLT-3",
+     "priority": "P1",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0046",
+    "text_sha256": "8bbc2a8ff68fe877ab9bbd4c038f3c0e59cdf9f4729983f193c6918483d13f59",
+    "expected": {
+     "code": "TOL-3",
+     "priority": "P1",
+     "asset": "CNC-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0047",
+    "text_sha256": "b9b3a6e98ef53c6a549f932f7bdf6261baa81923e0baf5ec59d057814d4d83a9",
+    "expected": {
+     "code": "SAF-2",
+     "priority": "P1",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0048",
+    "text_sha256": "1ca92b7165e6134f83445788df5906462a3cbaa1e769da15b4dc09f8922dc079",
+    "expected": {
+     "code": "ELE-1",
+     "priority": "P1",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0049",
+    "text_sha256": "3b0be54f6225f4b2e3f847696dccfb415e9d3cb6896906a223ec19be91d6b4c6",
+    "expected": {
+     "code": "SAF-1",
+     "priority": "P1",
+     "asset": "CNC-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0050",
+    "text_sha256": "2cc388760dfb534ec6e29826d4bad2f40f81002185e8a67f7be472422891fab8",
+    "expected": {
+     "code": "SPN-2",
+     "priority": "P3",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0051",
+    "text_sha256": "2056d805667ffc118469edaea0060611b6931541eae43012224cffea3b73960d",
+    "expected": {
+     "code": "SPN-1",
+     "priority": "P3",
+     "asset": "CNC-06"
+    }
+   },
+   {
+    "task_id": "bench-ms-0052",
+    "text_sha256": "982805bc58b3cf1eac1924922565794f59e474fa8287e678edbf61e92a1bf6af",
+    "expected": {
+     "code": "TOL-2",
+     "priority": "P1",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0053",
+    "text_sha256": "b49996f33ec1d8af4b973a41e561f38ab734cb2e03883ddf0b3a6a417b61ae99",
+    "expected": {
+     "code": "TOL-1",
+     "priority": "P3",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0054",
+    "text_sha256": "e8f5bd122e08cbd42b54f632c5d6a8dd89f17afc290c7f775c321929387d642b",
+    "expected": {
+     "code": "CLT-3",
+     "priority": "P2",
+     "asset": "CNC-06"
+    }
+   },
+   {
+    "task_id": "bench-ms-0055",
+    "text_sha256": "34d6e2bd3f4695298f0aecfc4dd3217a0f67a5f86de5d85c91b85d5594b66ebf",
+    "expected": {
+     "code": "SAF-3",
+     "priority": "P1",
+     "asset": "LTH-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0056",
+    "text_sha256": "8e33c5db672f40d0f06c806923cf9dacc6fa66caa521bbb8e614bab06faa351f",
+    "expected": {
+     "code": "TOL-1",
+     "priority": "P1",
+     "asset": "LTH-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0057",
+    "text_sha256": "70c8d8a55df562e5eac0124344b19f06f58069015af63913e2a16b8be34d970f",
+    "expected": {
+     "code": "HYD-1",
+     "priority": "P2",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0058",
+    "text_sha256": "4e2f7e9e01714041db926fbef1c83390ebdfcc6973d0fefc00d4cf78c68bab14",
+    "expected": {
+     "code": "ELE-1",
+     "priority": "P1",
+     "asset": "CNC-06"
+    }
+   },
+   {
+    "task_id": "bench-ms-0059",
+    "text_sha256": "021dfb0b5c425e537af52ae8ee2e6c9e23c82174951ccd06b366abefbceb3cf3",
+    "expected": {
+     "code": "SPN-1",
+     "priority": "P2",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0060",
+    "text_sha256": "10b74dffc050b252c269d7170708aedc66f1c5a315e5e4d02af2226f5f9dce9f",
+    "expected": {
+     "code": "ELE-2",
+     "priority": "P1",
+     "asset": "LTH-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0061",
+    "text_sha256": "542c5cef2c47ef65bed7f45725f80e93fc8c31796255bcd53eb83759159df1d4",
+    "expected": {
+     "code": "TOL-1",
+     "priority": "P2",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0062",
+    "text_sha256": "0ac1ba83e593acabdc462eecca2cbc2d7d6a9f2c8ed2901a5bbb1a6230a9b4d6",
+    "expected": {
+     "code": "TOL-3",
+     "priority": "P3",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0063",
+    "text_sha256": "29b2f5f2683eacb5be2a125d30633ee37a24e799abbabd250c5b311c996901cf",
+    "expected": {
+     "code": "SAF-2",
+     "priority": "P1",
+     "asset": "CNC-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0064",
+    "text_sha256": "5eb845c60544fb998e4ee76424498806b18f7695b58a735a2f99bfad767eb762",
+    "expected": {
+     "code": "TOL-3",
+     "priority": "P1",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0065",
+    "text_sha256": "ac8aca378dde778f3e0fc38277d3df15350d0c5270e3dc956eae3e7279d4e412",
+    "expected": {
+     "code": "SAF-2",
+     "priority": "P1",
+     "asset": "CNC-04"
+    }
+   },
+   {
+    "task_id": "bench-ms-0066",
+    "text_sha256": "2f60279ad709b80f08818ee80500139fde24eb4a056e79a74cafc2904daaa9ed",
+    "expected": {
+     "code": "ELE-2",
+     "priority": "P2",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0067",
+    "text_sha256": "bbbd95c85147e40fac0e08866c7b705a03bbda58b3a9f288060212542c7eb979",
+    "expected": {
+     "code": "HYD-2",
+     "priority": "P2",
+     "asset": "CNC-05"
+    }
+   },
+   {
+    "task_id": "bench-ms-0068",
+    "text_sha256": "4456250188dbb5fef3f58a915600f813320afbc814e08090606d9e3f53e7b3f7",
+    "expected": {
+     "code": "ELE-1",
+     "priority": "P1",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0069",
+    "text_sha256": "c7815f4f8258a38869b618aa5c284fd83c91d08c13ff56f8745a233b221312d1",
+    "expected": {
+     "code": "CLT-2",
+     "priority": "P2",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0070",
+    "text_sha256": "29a6a66d9f772620a618ae509ed308455a43397daf0e9159f6fc79b5c5cf0b8c",
+    "expected": {
+     "code": "CLT-2",
+     "priority": "P1",
+     "asset": "CNC-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0071",
+    "text_sha256": "7cd741ecde17401494f7331cc83ad77021392270457e0549c035b9ba0ab86ed0",
+    "expected": {
+     "code": "SAF-2",
+     "priority": "P1",
+     "asset": "CNC-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0072",
+    "text_sha256": "5192b4b2e7b29c0356af2ad5e93592528d55f3b4228ad96fb57d9a9223f983b3",
+    "expected": {
+     "code": "SPN-3",
+     "priority": "P1",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0073",
+    "text_sha256": "7f3c126af713f795cc97de2123037eaf37515e17d996519078decfabea9aecff",
+    "expected": {
+     "code": "CLT-2",
+     "priority": "P2",
+     "asset": "CNC-06"
+    }
+   },
+   {
+    "task_id": "bench-ms-0074",
+    "text_sha256": "961999b97bcaadf2a6d587b20b0e63883cb77a8034e6935026be449cb4ce19c6",
+    "expected": {
+     "code": "CLT-2",
+     "priority": "P3",
+     "asset": "CNC-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0075",
+    "text_sha256": "f70a9df9d9b47100430a03c2051fbac31b4f8da4f880a2567222a32505f7f926",
+    "expected": {
+     "code": "SAF-3",
+     "priority": "P1",
+     "asset": "CNC-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0076",
+    "text_sha256": "e88793676b9f3ab1ada204316880f30580e798e41a1359db455b090c09a8e342",
+    "expected": {
+     "code": "TOL-2",
+     "priority": "P3",
+     "asset": "CNC-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0077",
+    "text_sha256": "cbdf68f6a939363c342fed8a1d4393a0485cdaaf4978bab49bec8dcbd8cc2dfe",
+    "expected": {
+     "code": "SPN-2",
+     "priority": "P3",
+     "asset": "CNC-06"
+    }
+   },
+   {
+    "task_id": "bench-ms-0078",
+    "text_sha256": "d4f696b3ca91b3718440150e4802066d84f3c2c1f38cd5e4564aebbf26f7c17c",
+    "expected": {
+     "code": "SPN-1",
+     "priority": "P2",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0079",
+    "text_sha256": "68cc117855c9b0ecb71a6165bff2b202fe3f0d8ff7eaa5dcdf28f1c09eb38cd5",
+    "expected": {
+     "code": "SPN-2",
+     "priority": "P3",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0080",
+    "text_sha256": "e6526fb27b603566eb5345a5501ab1683f66f3cce9f21e59454a6e14fdb63d1f",
+    "expected": {
+     "code": "SPN-2",
+     "priority": "P2",
+     "asset": "LTH-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0082",
+    "text_sha256": "9b5495bf6ad0b7ea529b91d8c1a628f4506ccd8236fe37d16aed9a5f42e053d1",
+    "expected": {
+     "code": "SPN-2",
+     "priority": "P1",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0083",
+    "text_sha256": "aa5b6f5fd09b3b2556c6963f7f0ce2a6e98d545e592ecc4b804bd907d0086c1a",
+    "expected": {
+     "code": "CLT-1",
+     "priority": "P1",
+     "asset": "CNC-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0084",
+    "text_sha256": "f41c9d3631cd4cd85c7809d28a437c23c28c299798496445ab38fe2b97c507db",
+    "expected": {
+     "code": "SPN-2",
+     "priority": "P2",
+     "asset": "CNC-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0085",
+    "text_sha256": "74f5b1d9b7e192f01fc139b4f98dffed2ae48295c4a0e689ffe9249ac019917b",
+    "expected": {
+     "code": "SPN-3",
+     "priority": "P2",
+     "asset": "LTH-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0086",
+    "text_sha256": "3ccd6495358b62f36ba8f475a3fae6545ba2504c8e2079dd1de0dda32352e209",
+    "expected": {
+     "code": "CLT-1",
+     "priority": "P1",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0087",
+    "text_sha256": "f4a28ccb633d78ffc8fb3d73987f4c6c44313cc526f4a0bb044d3e1f957d16d7",
+    "expected": {
+     "code": "SPN-2",
+     "priority": "P1",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0088",
+    "text_sha256": "a14d5dbf268ce8152d2d4c710d9f2ba3e565a639c2d3b4a1177a5ec88d893d1f",
+    "expected": {
+     "code": "ELE-1",
+     "priority": "P2",
+     "asset": "CNC-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0089",
+    "text_sha256": "f1a41307527c82de6268e0f945bf7b893aa7f7ef9170d5b0d42ccb1c9e60a5d5",
+    "expected": {
+     "code": "TOL-3",
+     "priority": "P1",
+     "asset": "CNC-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0090",
+    "text_sha256": "7e9e6b9f9ba2bffb3e032a2e4ecebd518f3fa9334817a23b2bd5068da1e54d8d",
+    "expected": {
+     "code": "SPN-2",
+     "priority": "P3",
+     "asset": "LTH-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0091",
+    "text_sha256": "3ae4e1e5ecd8d721e054a93c479ce08b54a3df467270bca71ab01ff6b6465244",
+    "expected": {
+     "code": "TOL-1",
+     "priority": "P1",
+     "asset": "PRS-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0092",
+    "text_sha256": "4d7a7b93d1cc8922d2ca0bd99b4e0a5918e1d2314fb077bb7065baa581de7b0b",
+    "expected": {
+     "code": "SAF-3",
+     "priority": "P1",
+     "asset": "LTH-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0093",
+    "text_sha256": "ebed886b1f454a2f0b516db5d2c11cb0a10bae226b2515a1b3a6684862f3bb1a",
+    "expected": {
+     "code": "SPN-1",
+     "priority": "P1",
+     "asset": "CNC-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0094",
+    "text_sha256": "2d83d5047d66f976d1c9470a6dbaab03a9e23346bd19340c45f0808b69de3abb",
+    "expected": {
+     "code": "HYD-3",
+     "priority": "P3",
+     "asset": "CNC-03"
+    }
+   },
+   {
+    "task_id": "bench-ms-0095",
+    "text_sha256": "7cff7706c5751412040b59c58a5bb533882d5b087e6ee4ea0f158b0c5486ac25",
+    "expected": {
+     "code": "SPN-3",
+     "priority": "P3",
+     "asset": "LTH-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0096",
+    "text_sha256": "c9626940e0632cb30efed4101e44b7fe82fe5c5bc51c3cb589249831a1c1f5f5",
+    "expected": {
+     "code": "TOL-3",
+     "priority": "P3",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0097",
+    "text_sha256": "aeffd2d0b8de41582153875714361ba0bd4d085e46943416d80bf921c3205f22",
+    "expected": {
+     "code": "HYD-1",
+     "priority": "P3",
+     "asset": "CNC-01"
+    }
+   },
+   {
+    "task_id": "bench-ms-0098",
+    "text_sha256": "55301ced2aad606d2b6e74fba5c6b899d61ae508b5379007160ce0732ae457fc",
+    "expected": {
+     "code": "HYD-1",
+     "priority": "P3",
+     "asset": "CNC-06"
+    }
+   },
+   {
+    "task_id": "bench-ms-0099",
+    "text_sha256": "b46466f84ed6f859ff2a703a71cfbc4c18aeae6c6bb29f5561cfaa00c4815edc",
+    "expected": {
+     "code": "ELE-3",
+     "priority": "P2",
+     "asset": "PRS-02"
+    }
+   },
+   {
+    "task_id": "bench-ms-0100",
+    "text_sha256": "9d12f1c8fa2a47cb21905b1ff7921beba3e259fec4aeec96472a75f0743a71b9",
+    "expected": {
+     "code": "CLT-1",
+     "priority": "P2",
+     "asset": "LTH-01"
+    }
+   }
+  ],
+  "train_trajectories": 240,
+  "lora_steps": 200,
+  "items_sha256": "0d57b550aca7a058139644cf855b0e323ae440a78f97c72073d993085f350d47"
+ },
+ "sha256": "4d7ce30ecd561db33a736c4b7c54eb8f595418ac60ab454536084adc6f4a699f"
+}

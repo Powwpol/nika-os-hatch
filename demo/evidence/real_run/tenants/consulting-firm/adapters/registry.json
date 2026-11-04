@@ -1,0 +1,29 @@
+{
+ "tenant_id": "consulting-firm",
+ "active": "consulting-firm-v1",
+ "history": [
+  {
+   "ts": 1793787619.9092522,
+   "event": "promote",
+   "adapter": "consulting-firm-v1",
+   "previous": null,
+   "verdict": {
+    "n": 100,
+    "base_acc": 0.05,
+    "cand_acc": 0.95,
+    "delta": 0.9,
+    "wins": 90,
+    "losses": 0,
+    "ties": 10,
+    "p_sign": 8.077935669463161e-28,
+    "boot_lower": 0.85,
+    "boot_ci": [
+     0.84,
+     0.95
+    ],
+    "promote": true,
+    "prereg_sha256": "4e4d8fea9dab8e661082ac783650e28ae94ec77c636cf403106810489892aa9d"
+   }
+  }
+ ]
+}

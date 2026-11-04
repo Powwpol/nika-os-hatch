@@ -1,0 +1,233 @@
+{
+ "run_uid": "hck042",
+ "backend": "hf",
+ "model": "meta-models/Muse-Glimmer-30B",
+ "args": {
+  "backend": "hf",
+  "model": "meta-models/Muse-Glimmer-30B",
+  "out": "/root/runs/full",
+  "embedder": "hashing",
+  "n_traj": 240,
+  "n_bench": 100,
+  "steps": 200,
+  "batch": 4,
+  "lr": 0.0002,
+  "gen_batch": 48,
+  "max_new_tokens": 512,
+  "k": 4,
+  "no_control": false
+ },
+ "duration_s": 1228.8,
+ "isolation_probe": {
+  "machine-shop": {
+   "spindle noise work-order code": [
+    {
+     "source": "handbook/codes.md#spindle",
+     "tenant": "machine-shop"
+    },
+    {
+     "source": "handbook/codes.md#hydraulic",
+     "tenant": "machine-shop"
+    },
+    {
+     "source": "handbook/codes.md#electrical",
+     "tenant": "machine-shop"
+    }
+   ],
+   "days for an AI training": [
+    {
+     "source": "handbook/codes.md#suffix",
+     "tenant": "machine-shop"
+    },
+    {
+     "source": "handbook/priority.md",
+     "tenant": "machine-shop"
+    },
+    {
+     "source": "handbook/codes.md#tooling",
+     "tenant": "machine-shop"
+    }
+   ]
+  },
+  "consulting-firm": {
+   "spindle noise work-order code": [
+    {
+     "source": "handbook/days.md#bid",
+     "tenant": "consulting-firm"
+    },
+    {
+     "source": "handbook/catalog.md#proto",
+     "tenant": "consulting-firm"
+    },
+    {
+     "source": "handbook/catalog.md#train",
+     "tenant": "consulting-firm"
+    }
+   ],
+   "days for an AI training": [
+    {
+     "source": "handbook/catalog.md#train",
+     "tenant": "consulting-firm"
+    },
+    {
+     "source": "handbook/days.md#lean",
+     "tenant": "consulting-firm"
+    },
+    {
+     "source": "handbook/days.md#bid",
+     "tenant": "consulting-firm"
+    }
+   ]
+  }
+ },
+ "cross_tenant_file": "blocked: store file belongs to tenant 'consulting-firm', not 'intruder'",
+ "results": {
+  "machine-shop": {
+   "bottleneck": {
+    "n": 240,
+    "fails": 100,
+    "fail_rate": 0.4166666666666667,
+    "min_trajectories": 50,
+    "max_fail_rate": 0.2,
+    "hatch": true
+   },
+   "hatches": [
+    {
+     "adapter": "machine-shop-control",
+     "control": true,
+     "train": {
+      "steps": 200,
+      "batch": 4,
+      "lr": 0.0002,
+      "lora_r": 16,
+      "trainable_params": 29392896,
+      "loss_first10": 0.5490245200693608,
+      "loss_last10": 0.2075248919427395,
+      "train_seconds": 169.1,
+      "n_examples": 240
+     },
+     "verdict": {
+      "n": 100,
+      "base_acc": 0.57,
+      "cand_acc": 0.02,
+      "delta": -0.55,
+      "wins": 1,
+      "losses": 56,
+      "ties": 43,
+      "p_sign": 1.0,
+      "boot_lower": -0.63,
+      "boot_ci": [
+       -0.65,
+       -0.45
+      ],
+      "promote": false,
+      "prereg_sha256": "4d7ce30ecd561db33a736c4b7c54eb8f595418ac60ab454536084adc6f4a699f"
+     },
+     "decision": "rollback"
+    },
+    {
+     "adapter": "machine-shop-v1",
+     "control": false,
+     "train": {
+      "steps": 200,
+      "batch": 4,
+      "lr": 0.0002,
+      "lora_r": 16,
+      "trainable_params": 29392896,
+      "loss_first10": 0.15107056619599463,
+      "loss_last10": 3.318223145640786e-05,
+      "train_seconds": 168.7,
+      "n_examples": 240
+     },
+     "verdict": {
+      "n": 100,
+      "base_acc": 0.57,
+      "cand_acc": 1.0,
+      "delta": 0.43,
+      "wins": 43,
+      "losses": 0,
+      "ties": 57,
+      "p_sign": 1.1368683772161603e-13,
+      "boot_lower": 0.35,
+      "boot_ci": [
+       0.33,
+       0.53
+      ],
+      "promote": true,
+      "prereg_sha256": "4d7ce30ecd561db33a736c4b7c54eb8f595418ac60ab454536084adc6f4a699f"
+     },
+     "decision": "promote"
+    }
+   ],
+   "active_adapter": "machine-shop-v1"
+  },
+  "consulting-firm": {
+   "bottleneck": {
+    "n": 240,
+    "fails": 227,
+    "fail_rate": 0.9458333333333333,
+    "min_trajectories": 50,
+    "max_fail_rate": 0.2,
+    "hatch": true
+   },
+   "hatches": [
+    {
+     "adapter": "consulting-firm-v1",
+     "control": false,
+     "train": {
+      "steps": 200,
+      "batch": 4,
+      "lr": 0.0002,
+      "lora_r": 16,
+      "trainable_params": 29392896,
+      "loss_first10": 0.16794794978341088,
+      "loss_last10": 0.0008907366462835853,
+      "train_seconds": 136.0,
+      "n_examples": 240
+     },
+     "verdict": {
+      "n": 100,
+      "base_acc": 0.05,
+      "cand_acc": 0.95,
+      "delta": 0.9,
+      "wins": 90,
+      "losses": 0,
+      "ties": 10,
+      "p_sign": 8.077935669463161e-28,
+      "boot_lower": 0.85,
+      "boot_ci": [
+       0.84,
+       0.95
+      ],
+      "promote": true,
+      "prereg_sha256": "4e4d8fea9dab8e661082ac783650e28ae94ec77c636cf403106810489892aa9d"
+     },
+     "decision": "promote"
+    }
+   ],
+   "active_adapter": "consulting-firm-v1"
+  }
+ },
+ "served": {
+  "machine-shop": {
+   "adapter": "machine-shop-v1",
+   "task": "2pm team: press 2, spindle vibrates above 8000 rpm; still running but parts are rough.",
+   "answer": {
+    "code": "SPN-2",
+    "priority": "P2",
+    "asset": "PRS-02"
+   },
+   "verdict": true
+  },
+  "consulting-firm": {
+   "adapter": "consulting-firm-v1",
+   "task": "Please plan AI sessions for 40 managers at a water utility.",
+   "answer": {
+    "service": "TRAIN",
+    "deliverable": "workshop",
+    "days": 4
+   },
+   "verdict": true
+  }
+ }
+}
