@@ -5,6 +5,10 @@
 Built during the [Meta Global AI Developer Hackathon](https://cerebralvalley.ai) (Oct 27 – Nov 4, 2026) by BCUB3 (Paul Obara).
 Base model: **Muse Glimmer 30B** (`meta-models/Muse-Glimmer-30B`, Meta open weights, Apache-2.0), run in bf16 on one rented GPU.
 
+## Demo video
+
+3-minute demo (1080p, English narration and subtitles): [`demo/video/demo_3min.mp4`](demo/video/demo_3min.mp4).
+
 ## What is new
 
 **Everything in this repository was written during the hackathon.** It is a small, self-contained, open reference implementation of a pattern we run in production at BCUB3 (our internal operating layer, *Nika OS*). None of Nika OS's code is in this repository and none of it is needed to run it. The tenants and the data are synthetic.
