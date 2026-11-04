@@ -8,7 +8,8 @@ from orchestrator import Orchestrator, TrajectoryStore, FakeWorker, parse_answer
 def _orch(tmp_path, tid="machine-shop"):
     ms = MemoryStore(tmp_path, tid, HashingEmbedder())
     for src, text in TENANTS[tid]["handbook"]:
-        ms.add(text, source=src, ids=TraceIds("p", "ingest", "t", "u"), kind="rule")
+        ms.add(text, source=src, ids=TraceIds("p", "ingest", "t", "u"), kind="rule",
+               meta={"pinned": src.endswith("format.md")})
     ts = TrajectoryStore(tmp_path, tid)
     return Orchestrator(ms, ts, TENANTS[tid]["display"], lambda e, a: check(tid, e, a), k=3, batch_size=4), ms, ts
 
@@ -23,7 +24,9 @@ def test_trajectory_is_recorded_with_prompt_tools_output_verdict_ids(tmp_path):
     assert len(stored) == len(out) == 10
     t = stored[0]
     assert t.messages[0]["role"] == "system" and t.messages[1]["content"] == tasks[0].text
-    assert t.tool_calls[0]["name"] == "memory.search" and len(t.tool_calls[0]["result"]) == 3
+    assert t.tool_calls[0]["name"] == "memory.search" and len(t.tool_calls[0]["result"]) == 4
+    assert t.tool_calls[0]["result"][-1]["source"] == "handbook/format.md"
+    assert "Answer format" in t.messages[0]["content"]
     assert all("memory_id" in h and "source" in h for h in t.tool_calls[0]["result"])
     assert t.tool_calls[-1]["name"] == "answer.validate"
     assert t.raw_output and isinstance(t.answer, dict)

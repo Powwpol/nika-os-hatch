@@ -38,6 +38,8 @@ class HFWorker:
         kw = dict(max_new_tokens=self.max_new_tokens, do_sample=False, eos_token_id=self.eos or None,
                   pad_token_id=self.tok.pad_token_id)
         if adapter is None and self.has_peft():
+            if self.model.active_adapter not in self.model.peft_config:
+                self.model.set_adapter(next(iter(self.model.peft_config)))
             with self.model.disable_adapter():
                 out = self.model.generate(**enc, **kw)
         else:

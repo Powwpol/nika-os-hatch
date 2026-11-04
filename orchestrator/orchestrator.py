@@ -60,10 +60,14 @@ class Orchestrator:
         self.checker, self.k, self.batch_size, self.n_workers = checker, k, batch_size, n_workers
 
     def plan(self, task) -> tuple[list[dict], list[dict]]:
-        hits = self.memory.search(task.text, k=self.k, kind="rule")
+        """Pinned memories (e.g. the answer format) always go in; then the top-k retrieved ones."""
+        pinned = [m for m in self.memory.all(kind="rule") if m.meta.get("pinned")]
+        hits = [h for h in self.memory.search(task.text, k=self.k + len(pinned), kind="rule")
+                if not h.meta.get("pinned")][:self.k]
         tool_calls = [{"name": "memory.search", "args": {"query": task.text, "k": self.k, "kind": "rule"},
-                       "result": [{"memory_id": h.id, "source": h.source, "score": round(h.score, 4)} for h in hits]}]
-        return build_messages(self.display, [h.text for h in hits], task.text), tool_calls
+                       "result": [{"memory_id": h.id, "source": h.source, "score": round(h.score, 4)} for h in hits]
+                       + [{"memory_id": m.id, "source": m.source, "score": None, "pinned": True} for m in pinned]}]
+        return build_messages(self.display, [h.text for h in hits] + [m.text for m in pinned], task.text), tool_calls
 
     def run(self, tasks, workers: list, ids: TraceIds, adapter: str | None = None, record: bool = True,
             log: Callable[[str], None] = lambda s: None) -> list[Trajectory]:

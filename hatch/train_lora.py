@@ -99,6 +99,5 @@ class LoraTrainer:
                 "train_seconds": round(time.time() - t0, 1), "n_examples": len(enc)}
 
     def discard(self, name):
-        if name in self.loaded and hasattr(self.model, "delete_adapter"):
-            self.model.delete_adapter(name)
-            self.loaded.discard(name)
+        """A rolled-back adapter is never served again (its weights stay on disk under rolled_back/)."""
+        self.loaded.discard(name)

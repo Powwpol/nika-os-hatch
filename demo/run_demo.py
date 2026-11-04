@@ -119,7 +119,7 @@ def main():
         if ms.count() == 0:
             ids = TraceIds(PROJECT, "handbook-ingest", f"ingest-{tid}", run_uid)
             for src, text in spec["handbook"]:
-                ms.add(text, source=src, ids=ids, kind="rule")
+                ms.add(text, source=src, ids=ids, kind="rule", meta={"pinned": src.endswith("format.md")})
         stores[tid] = ms
         trajs_db[tid] = TrajectoryStore(mem_root, tid)
         orchs[tid] = Orchestrator(ms, trajs_db[tid], spec["display"],
@@ -167,11 +167,8 @@ def main():
                 return r
 
             def discard(self, name):
-                try:
-                    self.tr.discard(name)
-                except Exception as e:  # deleting the last adapter may be refused by PEFT
-                    log(f"  discard {name}: adapter kept in memory but never served ({e})")
-                self.wk.adapters = set(self.tr.loaded) - {name}
+                self.tr.discard(name)
+                self.wk.adapters = set(self.tr.loaded)
 
         trainer = _Sync(trainer, worker)
 
