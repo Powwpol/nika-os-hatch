@@ -28,7 +28,7 @@ Where the gain comes from (bench, per field): the base model already finds the c
 Then each tenant is served with its own adapter (`served` in `summary.json`), and a store file copied from one tenant into another is refused (`cross_tenant_file`).
 GPU cost of the hackathon runs (two smoke runs + this run): about 2.2 USD.
 
-Evidence (logs, journals, pre-registrations, trajectory databases, charts): [`demo/evidence/`](demo/evidence/).
+Evidence (logs, hatch journals, pre-registrations, every trajectory as JSONL, charts): [`demo/evidence/`](demo/evidence/).
 
 ## Architecture
 
