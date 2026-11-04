@@ -173,6 +173,51 @@ def architecture(out):
     plt.close(f)
 
 
+def run_stats(run):
+    """Per tenant, per (job, adapter): items, pass rate, per-field accuracy, mean latency per task."""
+    out = {}
+    for tdir in sorted((Path(run) / "tenants").iterdir()):
+        db = tdir / "trajectories.sqlite"
+        if not db.exists():
+            continue
+        groups = {}
+        for job, task, adapter, det, verdict, lat in sqlite3.connect(db).execute(
+                "SELECT job_id, run_task_id, adapter, verdict_detail, verdict, latency_s FROM trajectory"):
+            g = groups.setdefault(f"{job} · {adapter or 'base model'}", {"n": 0, "pass": 0, "fields": {}, "lat": 0.0})
+            g["n"] += 1
+            g["pass"] += verdict
+            g["lat"] += lat
+            for k, v in (json.loads(det).get("fields") or {}).items():
+                g["fields"][k] = g["fields"].get(k, 0) + int(v)
+        out[tdir.name] = {k: {"n": g["n"], "pass_rate": g["pass"] / g["n"], "latency_s": g["lat"] / g["n"],
+                              "field_accuracy": {f: c / g["n"] for f, c in g["fields"].items()}}
+                          for k, g in groups.items()}
+    return out
+
+
+def stats_table(stats, out):
+    f = fig()
+    title(f, "Where the gain comes from", "per-field exact match and mean worker latency per task, every recorded trajectory")
+    y = 0.82
+    for tid, groups in stats.items():
+        f.text(0.04, y, tid, color=A if tid == "machine-shop" else B, fontsize=19, weight="bold")
+        y -= 0.04
+        fields = sorted({k for g in groups.values() for k in g["field_accuracy"]})
+        head = f"{'job · adapter':<44}{'n':>5}{'pass':>8}" + "".join(f"{k:>13}" for k in fields) + f"{'s/task':>9}"
+        f.text(0.05, y, head, color=MUTED, fontsize=13, family="DejaVu Sans Mono")
+        y -= 0.032
+        for name, g in groups.items():
+            if name.startswith("serve"):
+                continue
+            row = (f"{name[:43]:<44}{g['n']:>5}{g['pass_rate']:>8.2f}" +
+                   "".join(f"{g['field_accuracy'].get(k, 0):>13.2f}" for k in fields) + f"{g['latency_s']:>9.2f}")
+            f.text(0.05, y, row, color=FG, fontsize=13, family="DejaVu Sans Mono")
+            y -= 0.03
+        y -= 0.03
+    f.savefig(out, facecolor=BG)
+    plt.close(f)
+
+
 def main(run, outdir):
     run, outdir = Path(run), Path(outdir)
     outdir.mkdir(parents=True, exist_ok=True)
@@ -182,6 +227,9 @@ def main(run, outdir):
     trajectory_card(run, "machine-shop", outdir / "02_trajectory_machine_shop.png")
     loss_chart(log, outdir / "03_lora_loss.png", summary)
     bench_chart(summary, outdir / "04_bench_verdicts.png")
+    st = run_stats(run)
+    (outdir / "trajectory_stats.json").write_text(json.dumps(st, indent=1))
+    stats_table(st, outdir / "06_field_accuracy_latency.png")
     key = [l for l in log.splitlines() if "batch" not in l and "step " not in l]
     terminal(key, outdir / "05_run_log.png", "Run log (real run, excerpt)")
     print("rendered", sorted(p.name for p in outdir.glob("*.png")))

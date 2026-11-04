@@ -100,6 +100,7 @@ def main():
     ap.add_argument("--max-new-tokens", type=int, default=384)
     ap.add_argument("--k", type=int, default=4)
     ap.add_argument("--no-control", action="store_true")
+    ap.add_argument("--round2", type=int, default=0, help="tasks served under the new adapter after hatching")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -210,7 +211,26 @@ def main():
             results[tid]["hatches"].append(r)
         results[tid]["active_adapter"] = hatcher.registry.active
 
-    # ------------------------------------------------------------- 4. serve with per-tenant adapters
+    # ------------------------------------------------------------- 4. round 2: work continues under the new adapter
+    if args.round2 > 0:
+        from hatch.registry import AdapterRegistry, HatchJournal
+        for tid in TENANTS:
+            active = AdapterRegistry(mem_root, tid).active
+            tasks2 = make_tasks(tid, args.round2, seed=4, prefix="r2-",
+                                exclude_texts={t.text for t in collect[tid] + bench[tid]})
+            if args.backend == "fake":
+                worker.oracle.update({t.task_id: t.expected for t in tasks2})
+            ids = TraceIds(PROJECT, "collect-r2", f"collect-r2-{tid}", run_uid)
+            t0 = time.time()
+            tr2 = orchs[tid].run(tasks2, [worker], ids, adapter=active, log=log)
+            b2 = bottleneck(tr2, min_trajectories=min(50, args.round2), max_fail_rate=0.2)
+            HatchJournal(mem_root, tid).write("trigger", round=2, adapter=active, **b2)
+            lat = sum(t.latency_s for t in tr2) / max(1, len(tr2))
+            log(f"[{tid}] round 2 under adapter={active}: pass {sum(t.verdict for t in tr2)}/{len(tr2)}, "
+                f"fail rate {b2['fail_rate']:.3f} -> hatch={b2['hatch']} ({lat:.2f}s/task, {time.time() - t0:.0f}s)")
+            results[tid]["round2"] = {"adapter": active, "bottleneck": b2, "latency_s_per_task": lat}
+
+    # ------------------------------------------------------------- 5. serve with per-tenant adapters
     served = {}
     for tid in TENANTS:
         from hatch.registry import AdapterRegistry
