@@ -65,7 +65,7 @@ def load_hf(model_id: str, log):
 
     tok = AutoTokenizer.from_pretrained(model_id)
     if tok.pad_token is None:
-        tok.pad_token = tok.eos_token
+        tok.add_special_tokens({"pad_token": tok.eos_token})
     model = None
     for cls_name in ("AutoModelForCausalLM", "AutoModelForMultimodalLM", "AutoModelForImageTextToText"):
         cls = getattr(transformers, cls_name, None)
