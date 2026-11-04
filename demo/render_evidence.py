@@ -63,7 +63,11 @@ def bench_chart(summary, out):
     ax.tick_params(colors=FG)
     for s in ax.spines.values():
         s.set_color(MUTED)
-    ax.legend(facecolor=BG, labelcolor=FG, fontsize=13, loc="upper left")
+    from matplotlib.patches import Patch
+    ax.legend(handles=[Patch(color=MUTED, label="before (base model, or active adapter)"),
+                       Patch(color=OK, label="candidate adapter, promoted"),
+                       Patch(color=KO, label="candidate adapter, rolled back")],
+              facecolor=BG, labelcolor=FG, fontsize=13, loc="upper left")
     y = 0.78
     for tid, h in rows:
         v = h["verdict"]
@@ -163,7 +167,7 @@ def architecture(out):
         arrow(18.6, y0 + 7, 23.4, y0 + 7, "retrieve")
         arrow(42.6, y0 + 7, 47.4, y0 + 7, "record")
         arrow(64.6, y0 + 7, 69.4, y0 + 7, "train")
-    ax.text(50, 27.5, "headless worker: Muse Glimmer 30B (Meta open weights) · one LoRA adapter per tenant, "
+    ax.text(50, 3, "headless worker: Muse Glimmer 30B (Meta open weights) · one LoRA adapter per tenant, "
             "served only inside its tenant", color=FG, ha="center", fontsize=15, style="italic")
     f.savefig(out, facecolor=BG)
     plt.close(f)
